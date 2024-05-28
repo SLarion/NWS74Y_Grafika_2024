@@ -151,6 +151,17 @@ void handle_app_events(App* app)
               app->check = false;
               ufo_kezdop(&(app->scene.ufo));
              break;
+             case SDL_SCANCODE_F1:
+               
+                if (app->scene.help)
+                {
+                    app->scene.help = false;
+                  
+                }
+                else
+                {
+                    app->scene.help = true;
+                }
 		
             default:
                 break;

@@ -20,7 +20,8 @@ void init_scene(Scene* scene)
 
     glBindTexture(GL_TEXTURE_2D, scene->texture_id2);
 
-
+    scene->helpt = load_texture("textures/help.png");
+    
     scene->material.ambient.red = 1.0;
     scene->material.ambient.green = 1.0;
     scene->material.ambient.blue = 1.0;
@@ -36,6 +37,8 @@ void init_scene(Scene* scene)
     scene->material.shininess = 0.0;
 
     set_lighting(scene->lighting_level);
+    scene->help = false;
+
 
 
     scene->fogColor[0] = 0.5f;
@@ -93,6 +96,35 @@ void update_scene(Scene* scene)
 {
 }
 
+void helping(GLuint tid)
+{
+    glDisable(GL_LIGHTING);
+    glDisable(GL_DEPTH_TEST);
+    glEnable(GL_COLOR_MATERIAL);
+
+    glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
+
+    glBindTexture(GL_TEXTURE_2D, tid);
+    glColor3f(1, 1, 1);
+
+    glBegin(GL_QUADS);
+    glTexCoord2f(0, 0);
+    glVertex3f(-2.0, 2.0, -3);
+    glTexCoord2f(1, 0);
+    glVertex3f(2.0, 2.0, -3);
+    glTexCoord2f(1, 1);
+    glVertex3f(2.0, -2.0, -3);
+    glTexCoord2f(0, 1);
+    glVertex3f(-2.0, -2.0, -3);
+    glEnd();
+
+    glDisable(GL_COLOR_MATERIAL);
+    glEnable(GL_LIGHTING);
+    glEnable(GL_DEPTH_TEST);
+}
+
+
 void render_scene(const Scene* scene)
 {
     set_material(&(scene->material));
@@ -127,7 +159,10 @@ void render_scene(const Scene* scene)
     glPopMatrix();
 
 
-
+    if(scene->help == true)
+    {
+    helping(scene->helpt);
+    }    
     
     draw_origin();
     

@@ -9,7 +9,7 @@
 
 typedef struct Scene
 {
-    
+    bool help;
     Ufo ufo;
     Model talaj;
     Model fold;
@@ -18,6 +18,7 @@ typedef struct Scene
     Material material;
     GLuint texture_id1;
     GLuint texture_id2;
+    GLuint helpt;
    
 } Scene;
 
