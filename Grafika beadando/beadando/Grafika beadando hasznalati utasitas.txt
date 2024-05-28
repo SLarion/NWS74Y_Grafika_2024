@@ -1,0 +1,3 @@
+M - mozgatja az UFO-t
+X - Kezdő pozícióra ugrás
++- fényerő állítás
